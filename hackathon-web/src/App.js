@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from '../node_modules/react';
 // import logo from './logo.svg';
 import './App.css';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
-import { BrowserRouter, Route } from 'react-router-dom';
+import SanPham from './pages/Sanpham'
+import { BrowserRouter, Route } from '../node_modules/react-router-dom';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <BrowserRouter>
           <Route path='/' exact={true} component={Home}  />
           <Route path='/sign-in' component={SignIn} />
+          <Route path='/san-pham' component={SanPham}/>
         </BrowserRouter>
       </div>
     );

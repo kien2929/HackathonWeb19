@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+.top-title{
+  font-family: 'Alfa Slab One', cursive;
+}
 .App {
   text-align: center;
 }
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -21,16 +26,17 @@
 .carousel-item > img { 
   width: 100%; 
 }
+.NavBar-item{
+  height: 100%;
+  margin-left: 1px;
+}
+.NavBar-item:hover{
+  background-color: #FA0A0A;
+}
 
 .App-link {
   color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*
+Carousel Trang san pham 
+ */
