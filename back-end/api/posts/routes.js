@@ -19,6 +19,45 @@ productRouter.post("/", async (req, res) => {
     res.status(500).end(error.message);
   }
 });
+productRouter.get("/products", async (req, res) => {
+  try {
+    const allProducts = await ProductModel.find().exec();
+    res.status(200).json({
+      result: "ok",
+      data: allProducts,
+      message: "ok"
+    })
+  } catch (error) {
+    res.status(error.status || 500).end(error.message || 'Internal server error');
+  }
+})
+productRouter.get("/products", async (req, res) => {
+  try {
+    const productSearch = req.query.searchValue;
+    const productSearchInfo = await ProductModel.find({
+      $text: { $search: productSearch }
+    }).exec();
+    res.status(200).json({
+      result: "ok",
+      data: productSearchInfo,
+      message: "ok"
+    });
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .end(error.message || "Internal server error");
+  }
+});
+productRouter.get("/get-product-classify", async (req, res) => {
+  try {
+    const productQuery = req.query.classify; 
+    const productClassify = await ProductModel.findById(productQuery).exec();
+
+    res.status(200).json(productClassify);
+  } catch (error) {
+    res.status(500).end(error.message);
+  }
+});
 
 // productRouter.get("/:postId", async (req, res) => {
 //   try {

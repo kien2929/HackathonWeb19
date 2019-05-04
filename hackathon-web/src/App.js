@@ -14,7 +14,7 @@ class App extends Component {
       <BrowserRouter>
           <Route path='/' exact={true} component={Home}  />
           <Route path='/sign-in' component={SignIn} />
-          <Route path='/san-pham' component={SanPham}/>
+          <Route path='/san-pham/:productId' component={SanPham}/>
         </BrowserRouter>
       </div>
     );

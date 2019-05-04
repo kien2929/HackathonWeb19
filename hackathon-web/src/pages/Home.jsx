@@ -5,7 +5,13 @@ import NavBarHome from '../components/NavBarHome';
 import Caro from '../components/home/Caro';
 import TopProduct from '../components/home/TopProduct'
 import TopBuy from '../components/home/TopBuy'
-const Home = (props) => {
+class Home extends React.Component{
+    state = {
+        displayedImage: []
+        
+    }
+
+    render(){
     return (
         <div style={{backgroundColor: "#FAFAFA",width:'100%'}}>
             <NavBarHome></NavBarHome>
@@ -24,5 +30,5 @@ const Home = (props) => {
             
         </div>
     );
-}
+}}
 export default Home
