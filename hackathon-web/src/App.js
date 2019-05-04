@@ -3,7 +3,8 @@ import React, { Component } from '../node_modules/react';
 import './App.css';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
-import SanPham from './pages/Sanpham'
+import SanPham from './pages/Sanpham';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BrowserRouter, Route } from '../node_modules/react-router-dom';
 
 class App extends Component {

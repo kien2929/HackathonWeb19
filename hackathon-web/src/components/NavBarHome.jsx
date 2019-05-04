@@ -20,7 +20,8 @@ export default class NavBarHome extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      searchKey: '',
     };
   }
   toggle() {
@@ -35,13 +36,21 @@ export default class NavBarHome extends React.Component {
           <div style={{ marginLeft: '6%', width: '88%' }}>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <div style={{ height: '100%', backgroundColor: '#FA0A0A' }} className='row  w-40 py-1 px-2 mx-0'><NavbarBrand href="/" > <img src={logo} width="30" height="30" class="d-inline-block align-top" alt=""></img></NavbarBrand>
+              <div style={{ height: '100%', backgroundColor: '#FA0A0A' }} className='row  w-40 py-1 px-2 mx-0'><NavbarBrand href="/san-pham" > <img src={logo} width="30" height="30" class="d-inline-block align-top" alt=""></img></NavbarBrand>
                 <Form className='' style={{ width: '350px' }}>
-                  <Input type="text" name="search" id="searchId" placeholder="Nhập tên sản phẩm" />
+                  <Input type="text" name="search" 
+                    id="searchId" 
+                    placeholder="Nhập tên sản phẩm" 
+                    onChange={event => { this.setState({ searchKey: event.target.value }) }}
+                    onKeyPress={event => {
+                      if (event.key === 'Enter') {
+                        this.search()
+                      }
+                    }} />
                 </Form></div>
 
               <Nav className="mr-auto NavBar-item" navbar>
-                <UncontrolledDropdown  nav inNavbar>
+                <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav className='mx-0 my-0' >
                     <img src="https://cdn0.iconfinder.com/data/icons/inficons-muticollection/123/mobile-512.png" width="20" height="20" class="d-block align-top" alt=""></img>
                     ĐIỆN THOẠI
@@ -83,10 +92,10 @@ export default class NavBarHome extends React.Component {
                   </DropdownMenu>
 
                 </UncontrolledDropdown>
-                </Nav>
-                <Nav className='ml-auto NavBar-item'>
+              </Nav>
+              <Nav className='ml-auto NavBar-item'>
                 <NavItem >
-                  <NavLink style={{width:''}} href="/sign-in"><img style={{width:'20px'}} src="https://cdn0.iconfinder.com/data/icons/inficons-muticollection/123/direction-512.png" alt=""/></NavLink>
+                  <NavLink style={{ width: '' }} href="/sign-in"><img style={{ width: '20px' }} src="https://cdn0.iconfinder.com/data/icons/inficons-muticollection/123/direction-512.png" alt="" /></NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
