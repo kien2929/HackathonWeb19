@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost:27017/hackathon", error => {
   server.use(bodyParser.urlencoded({ extended: false }));
   server.use(bodyParser.json());
   server.use(cors({
-    origin:['http://localhost:3000'],
+    origin:['http://localhost:3000','http://localhost:3002'],
 }));
   server.use(expressSession({
     secret: 'keyboard cat',

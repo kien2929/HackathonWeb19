@@ -1,0 +1,19 @@
+.formSignIn{
+    margin-top : 150px;
+    background-color: white;
+    border: 1px solid #ffffff;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 60px !important;
+    -webkit-box-shadow: 13px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 13px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 13px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.brand{
+    font-family: 'Wendy One';
+    font-size: 18px;
+}

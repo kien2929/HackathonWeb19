@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Wendy+One');
+.tabs :hover {
+    cursor: pointer !important;
+}
+body {
+    background-color: #f5f6fa;
+}
+
+.header{
+    background-color: #95a5a6 !important;
+    font-family: 'Wendy One';
+    font-size: 18px;
+}

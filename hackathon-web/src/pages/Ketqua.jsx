@@ -2,7 +2,6 @@ import React from "react";
 import { Col, Row, Form, FormGroup, Input, Label } from 'reactstrap';
 import NavBarHome from '../components/NavBarHome';
 import axios from 'axios';
-import MainContent from '../components/MainContent'
 import config from '../config/index'
 class Ketqua extends React.Component {
   constructor(props) {

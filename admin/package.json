@@ -1,24 +1,20 @@
 {
-  "name": "hackathon-web",
+  "name": "admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^3.9.3",
-    "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "4",
     "html2canvas": "^1.0.0-rc.1",
-    "jquery": "^3.4.1",
     "jspdf": "^1.5.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-responsive-carousel": "^3.1.49",
-    "react-router-dom": "^5.0.0",
+    "react-modal": "^3.8.1",
     "react-scripts": "2.1.8",
     "reactstrap": "^8.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3002 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
