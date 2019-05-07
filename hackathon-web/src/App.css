@@ -1,9 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display+SC');
 .top-title{
   font-family: 'Alfa Slab One', cursive;
 }
+.topbuy-title{
+  font-family: 'Playfair Display SC', serif;
+}
+.topproduct-title{
+  font-family: 'Playfair Display SC', serif;
+}
 .App {
   text-align: center;
+}
+
+.brand{
+  font-family: 'Lobster', cursive;
 }
 
 

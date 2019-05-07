@@ -8,10 +8,6 @@ authRouter.post("/login", async (req, res) => {
     const loginInfo = req.body; 
     if (loginInfo.username === "admin") {
       if (loginInfo.password === "admin1") {
-        // req.session.admin = {
-        //     _id: user._id,
-        //   };
-          // req.session.save();
         res.status(200).json({
           message: "Login success",
           success: true

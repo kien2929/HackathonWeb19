@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const productRouter = require('./api/posts/routes');
 const authRouter = require("./api/auth/routes");
+const orderRouter = require("./api/orders/routes")
 const cors = require('cors')
 const expressSession = require("express-session");
 
@@ -26,6 +27,7 @@ mongoose.connect("mongodb://localhost:27017/hackathon", error => {
   // routes
   server.use("/api/posts", productRouter);
   server.use("/api/auth", authRouter); 
+  server.use("/api/orders",orderRouter);
 
   server.listen(3001, error => {
     if (error) {

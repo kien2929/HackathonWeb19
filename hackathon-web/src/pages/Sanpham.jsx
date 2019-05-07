@@ -21,7 +21,7 @@ class Sanpham extends React.Component {
     const productId = pathname.split('/')[pathname.split('/').length - 1];
     // cal ajax
     axios({
-      url: `${config.baseUrl}/api/posts/get-product-classify?classify=${productId}`,
+      url: `${config.baseUrl}/api/posts/get-product-by-id?productId=${productId}`,
       method: `get`,
     })
       .then((response) => {

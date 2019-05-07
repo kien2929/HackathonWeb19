@@ -8,7 +8,7 @@ const TopBuy = (props) => {
           <tr>
             <th style={{backgroundColor:'#f46241'}}></th>
                 <th style={{backgroundColor:'#f46241'}}></th>
-                <th style={{backgroundColor:'#f46241'}}>Top mua sắm</th>
+                <th className='topbuy-title' style={{backgroundColor:'#f46241'}}>TOP MUA SẮM</th>
                 <th style={{backgroundColor:'#f46241'}}></th>
                 <th style={{backgroundColor:'#f46241'}}></th>
           </tr>
@@ -16,18 +16,18 @@ const TopBuy = (props) => {
         <tbody>
           <tr>
             {/* <th scope="row">1</th> */}
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
           </tr>
           <tr>
-          <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='20%' /><br/>Iphone X</a></th>
+          <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
+            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%'alt=' '/><br/>Iphone X</a></th>
           </tr>
         </tbody>
       </Table>

@@ -10,11 +10,10 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem ,
-InputGroup,
-Input} from 'reactstrap';
-import axios from 'axios';
-import config from '../config/index'
+  DropdownItem,
+  InputGroup,
+  Input
+} from 'reactstrap';
 
 class NavBarHome extends React.Component {
   constructor(props) {
@@ -22,25 +21,18 @@ class NavBarHome extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      searchKey:''
+      searchKey: ''
     };
   }
-  search(){
-    axios({
-      method: 'get',
-      url: `${config.baseUrl}/products?searchValue=${this.state.searchKey}`})
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          id: response.data._id,
-          name: response.data.name,
-          price: response.data.price,
-        });
-      })
-      .catch((error) => console.log(error));
-    
-    }
+  // search() {
   
+  // }
+  replaceSpace(a) {
+    a = a.replace(" ","%20");
+    this.setState = {
+      searchKey: a,
+    }
+  }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -49,44 +41,33 @@ class NavBarHome extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Trang chủ</NavbarBrand>
+        <Navbar style={{ backgroundColor: '#31f7f7' }} color="" light expand="md">
+          <NavbarBrand className='brand' style={{ fontWeight: 'bold' }} href="/"><img style={{ height: '20px', paddingBottom: '3px' }} src='https://image.flaticon.com/icons/png/512/25/25694.png' /> Web bán hàng</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-            <InputGroup >
-        <Input  placeholder='Tìm kiếm'
-               onChange ={ (e)=> {
-                this.setState={
-                  searchKey:e.target.value,
-                  
-                };console.log(e.target.value)
-             } }
-             onKeyPress={event => {
-              if (event.key === 'Enter') {
-                this.search()
-              }
-            }}
-             />
-      </InputGroup>
+              <InputGroup >
+                <Input placeholder='Tìm kiếm'
+                  onChange={(e) => {this.replaceSpace(e.target.value);
+                  console.log(this.state.searchKey)}}
+                  onKeyPress={e => {
+                    if (e.key === 'Enter') {
+                      window.location.href=`/search/${e.target.value}`
+                    }
+                  }}
+                />
+              </InputGroup>
 
               <NavItem>
-                <NavLink  href="https://www.facebook.com/Web19-276360673304453"><img style={{height:'20px'}} src='https://image.flaticon.com/icons/png/512/33/33702.png'/></NavLink>
+                <NavLink href="https://www.facebook.com/Web19-276360673304453"><img style={{ height: '20px', paddingBottom: '3px' }} src='https://image.flaticon.com/icons/png/512/33/33702.png' /></NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                <img style={{height:'20px'}} src='https://cdn4.iconfinder.com/data/icons/eldorado-user/40/user-512.png'/>
+                  <img style={{ height: '20px', paddingBottom: '3px' }} src='https://cdn4.iconfinder.com/data/icons/eldorado-user/40/user-512.png' />
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem href='/sign-in'>
-                  Sign-In
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
+                    Sign-In
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
