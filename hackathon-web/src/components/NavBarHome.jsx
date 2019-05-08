@@ -66,7 +66,7 @@ class NavBarHome extends React.Component {
                   <img style={{ height: '20px', paddingBottom: '3px' }} src='https://cdn4.iconfinder.com/data/icons/eldorado-user/40/user-512.png' />
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href='/sign-in'>
+                  <DropdownItem href='http://localhost:3002/'>
                     Sign-In
                   </DropdownItem>
                 </DropdownMenu>

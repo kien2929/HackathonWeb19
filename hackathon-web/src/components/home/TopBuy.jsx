@@ -1,36 +1,64 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Table} from 'reactstrap';
-const TopBuy = (props) => {
+import {Table,Row,Col} from 'reactstrap';
+import axios from 'axios'
+import config from '../../config/index'
+class TopBuy extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      products: [],
+      products5:[],
+      products10:[]
+    }
+  }
+  componentDidMount() {
+    axios.get(`${config.baseUrl}/api/posts/products-buy`)
+      .then((response) => {
+        response.data.data.forEach((item) => {
+          this.setState({
+            products: [...this.state.products, {
+              id: item._id,
+              name: item.data.name,
+              price: item.data.price,
+              path: [...item.path.data]
+            }]
+          })
+        });
+        this.setState({
+          products5:this.state.products.slice(0,5),
+            products10:this.state.products.slice(5,10)
+        });
+        console.log(this.state.products5)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+  render() {
     return (
-        <Table style={{border:'2px solid red'}}>
-        <thead>
-          <tr>
-            <th style={{backgroundColor:'#f46241'}}></th>
-                <th style={{backgroundColor:'#f46241'}}></th>
-                <th className='topbuy-title' style={{backgroundColor:'#f46241'}}>TOP MUA SẮM</th>
-                <th style={{backgroundColor:'#f46241'}}></th>
-                <th style={{backgroundColor:'#f46241'}}></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {/* <th scope="row">1</th> */}
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-          </tr>
-          <tr>
-          <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%' alt=' '/><br/>Iphone X</a></th>
-            <th><a href='#'><img src='https://cellphones.com.vn/media/catalog/product/cache/7/small_image/220x175/9df78eab33525d08d6e5fb8d27136e95/6/3/636872943529900358_samsung-galaxy-a50-trang-1.png' width='50%'alt=' '/><br/>Iphone X</a></th>
-          </tr>
-        </tbody>
-      </Table>
+      <Table style={{borderRadius:'5px'}}>
+      <Row >
+        <Col style={{ backgroundColor: '#f46241',fontWeight:'bold',padding:'10px 0px'}} className='topproduct-title'>TOP MUA SẮM</Col>
+      </Row>
+      <Row>
+        {this.state.products5.map((item, index) => {
+          return <Col key={index} style={{ backgroundColor: 'white' }}>
+            <a style={{ backgroundColor: 'white', width: '15%' }} href={`/san-pham/${item.id}`} >
+              <img style={{ backgroundColor: 'white' }} src={`http://localhost:3001/open-image?image_name=${item.path[0].replace(`public\\images\\`, '')}`} height='100px' alt='' />
+              <br /><p style={{ width: '' }}>{item.name}</p></a></Col>;
+        })}
+      </Row>
+      <Row>
+        {this.state.products10.map((item, index) => {
+          return <Col key={index} style={{ backgroundColor: 'white' }}>
+            <a href={`/san-pham/${item.id}`} >
+              <img src={`http://localhost:3001/open-image?image_name=${item.path[0].replace(`public\\images\\`, '')}`} height='100px' alt='' />
+              <br /><p>{item.name}</p></a></Col>;
+        })}
+      </Row>
+    </Table>
     )
+  }
 }
 export default TopBuy

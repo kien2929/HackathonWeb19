@@ -18,11 +18,12 @@ class Sanpham extends React.Component {
       id: '',
       name: '',
       prince: '',
-      orderName:'',
-      orderPhone:'',
-      orderAddress:'',
-      orderNumber:''
-      
+      orderName: '',
+      orderPhone: '',
+      orderAddress: '',
+      orderProduction: [],
+      path: []
+
     }
     this.toggle = this.toggle.bind(this);
 
@@ -30,15 +31,16 @@ class Sanpham extends React.Component {
   toggle() {
     this.setState(state => ({ collapse: !state.collapse }));
   }
-  buy(){
+  buy() {
+    console.log(this.state)
     axios({
       url: `${config.baseUrl}/api/orders`,
       method: `post`,
-      data:[this.state.orderAddress,
+      data: [this.state.orderAddress,
       this.state.orderPhone,
-    this.state.orderAddress,
-    this.state.orderNumber
-  ]
+      this.state.orderAddress,
+      this.state.orderNumber
+      ]
     })
       .then((response) => {
         // console.log(response.data);
@@ -60,12 +62,16 @@ class Sanpham extends React.Component {
       method: `get`,
     })
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.path.data);
         this.setState({
           id: response.data._id,
-          name: response.data.name,
-          price: response.data.price,
+          name: response.data.data.name,
+          price: response.data.data.romColorPrice[0][2],
+          ram: response.data.data.ram,
+          rom: response.data.data.rom,
+          path: [...response.data.path.data]
         });
+        console.log(`http://localhost:3001/open-image?image_name=${this.state.path[0].replace(`public\\images\\`, '')}`)
       })
       .catch((error) => console.log(error));
   }
@@ -75,19 +81,16 @@ class Sanpham extends React.Component {
         <NavBarHome></NavBarHome>
         <div>
           <Row style={{ marginLeft: '5%', marginTop: '30px' }}>
-            <Col sm='4'>
+            <Col sm='5'>
               <Carousel autoPlay >
-                <div>
-                  <img src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" />
-                  <p className="legend">Hình 1</p>
-                </div>
-                <div>
-                  <img src="http://lorempixel.com/output/cats-q-c-640-480-2.jpg" />
-                  <p className="legend">Hình 2</p>
-                </div>
-                <div>
-                  <img src="http://lorempixel.com/output/cats-q-c-640-480-3.jpg" />
-                  <p className="legend">Hình 3</p>
+                {this.state.path.map((item) => {
+                  return <div style={{backgroundColor:'white'}} >
+                    <img src={`http://localhost:3001/open-image?image_name=${item.replace(`public\\images\\`, '')}`} height='' alt='' />
+                  </div>;
+                })}
+                <div style={{backgroundColor:'white'}}>
+                  <p>ha</p>
+                  <img src="https://cellphones.com.vn/media/catalog/product/cache/7/thumbnail/9df78eab33525d08d6e5fb8d27136e95/p/h/photo_2019-04-02_13-44-01.jpg" height='' />
                 </div>
               </Carousel>
             </Col>
@@ -95,9 +98,9 @@ class Sanpham extends React.Component {
               <p style={{ fontWeight: 'bold' }}><h5>THÔNG TIN SẢN PHẨM</h5> </p>
               <p style={{ color: 'red', fontWeight: 'bold' }}>Giá: {this.state.price} đ</p>
               <p>Tên: {this.state.name}
-                <br />Ram:
-              <br />Bộ nhớ:
-              <br />
+                <br />Ram: {this.state.ram}
+                <br />Bộ nhớ:{this.state.rom}
+                <br />
               </p>
               <Button className='bg-danger' onClick={this.toggle}>Mua hàng</Button>
               <Collapse isOpen={this.state.collapse}>
@@ -106,20 +109,20 @@ class Sanpham extends React.Component {
                     <Form>
                       <FormGroup>
                         Tên Khách Hàng
-                        <Input type='name' id='name' onChange={e=>this.setState({
-                          orderName:e.target.value
+                        <Input type='name' id='name' onChange={e => this.setState({
+                          orderName: e.target.value
                         })}></Input>
                         Địa Chỉ
-                        <Input type='name' id='address' onChange={e=>this.setState({
-                          orderAddress:e.target.value
+                        <Input type='name' id='address' onChange={e => this.setState({
+                          orderAddress: e.target.value
                         })} ></Input>
                         Số điện thoại
-                        <Input type='number' id='phone' onChange={e=>this.setState({
-                          orderPhone:e.target.value
+                        <Input type='number' id='phone' onChange={e => this.setState({
+                          orderPhone: e.target.value
                         })}></Input>
                         Số lượng
-                        <Input type="select" name="select" id="number" onChange={e=>this.setState({
-                          orderNumber:e.target.value
+                        <Input type="select" name="select" id="number" onChange={e => this.setState({
+                          orderNumber: e.target.value
                         })}>
                           <option>1</option>
                           <option>2</option>

@@ -3,10 +3,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const productRouter = require('./api/posts/routes');
 const authRouter = require("./api/auth/routes");
-const orderRouter = require("./api/orders/routes")
+const orderRouter = require("./api/orders/routes");
 const cors = require('cors')
 const expressSession = require("express-session");
 const formidable = require("formidable");
+const path = require("path");
+const axios =require("axios");
 const fs = require("fs");
 let dir;
 
@@ -16,6 +18,7 @@ mongoose.connect("mongodb://localhost:27017/hackathon", error => {
   }
 
   const server = express();
+  server.use(express.static('public'));
   server.use(bodyParser.urlencoded({ extended: false }));
   server.use(bodyParser.json());
   server.use(cors({
@@ -30,21 +33,23 @@ mongoose.connect("mongodb://localhost:27017/hackathon", error => {
   // routes
   server.use("/api/posts", productRouter);
   server.use("/api/auth", authRouter); 
-  server.use("/api/orders",orderRouter);
-  server.post('/createFolder', (req,res)=>{
-    let PATH_NAME = `${req.query.name}`
-    dir = `./public/images/${PATH_NAME}`;
+  server.use("/api/orders", orderRouter); 
 
-    if (!fs.existsSync(dir)){
-      fs.mkdirSync(dir);
-      res.status(200).send('ok');
-    }
-  });
+  //create-folder save image
+  // server.post('/createFolder', (req,res)=>{
+  //   let PATH_NAME = `${req.query.name}`
+  //   dir = `./public/images/${PATH_NAME}`;
+
+  //   if (!fs.existsSync(dir)){
+  //     fs.mkdirSync(dir);
+  //     res.status(200).send('ok');
+  //   }
+  // });
 
   //read-save image to public/image/cty/san pham
   server.post("/upload-image", (req, res, next) => {
     let form = new formidable.IncomingForm(); 
-    form.uploadDir = `${dir}`;
+    form.uploadDir = `./public/images`;
     form.keepExtensions = true;
     form.maxFieldsSize = 10 * 1024 * 1024; //10mb
     form.multiples = true;
@@ -52,11 +57,11 @@ mongoose.connect("mongodb://localhost:27017/hackathon", error => {
       if (err) {
         res.status(500).json({
           result: "failed",
-          data: {},
+          data: fileName,
           message: `${err}`
         })
-      }
-      console.log(files);
+      }    
+
       const arrayOfFiles = files["file"];
       if (arrayOfFiles.length > 0) {
         let fileName = [];
@@ -66,7 +71,9 @@ mongoose.connect("mongodb://localhost:27017/hackathon", error => {
         });
         res.status(201).json({
           result: "ok",
-          data: fileName,
+          data : files.file.map(item => {
+            return item.path
+          }),
           numberOfImages: fileName.length,
           message: "success"
         })
@@ -81,9 +88,11 @@ mongoose.connect("mongodb://localhost:27017/hackathon", error => {
     })
   })
 
+  
+
 //open-image
   server.get("/open-image", (req, res, next) => {
-    const imageName = "./public/image/" + req.query.image_name;
+    const imageName = "./public/images/" + req.query.image_name;
     fs.readFile(imageName, (err, imageData) => {
       if (err) {
         res.status(500).json({
@@ -96,8 +105,9 @@ mongoose.connect("mongodb://localhost:27017/hackathon", error => {
       res.end(imageData);
     })
   })
+
   server.listen(3001, error => {
-    if (error) {
+    if (error) {  
       throw error;
     }
     console.log("Server listen on port 3001...");

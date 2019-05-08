@@ -24,8 +24,8 @@ class PostPanel extends Component {
             inforProduction : {
                 manufacturer : '',
                 name : '',
-                '3G' : '',
-                '4G' : '',
+                _3G : '',
+                _4G : '',
                 size : '',
                 weight : '',
                 display : '',
@@ -73,7 +73,7 @@ class PostPanel extends Component {
         this.setState({
             inforProduction : {
                 ...this.state.inforProduction,
-                '3G' : e.target.value
+                _3G : e.target.value
             }
         })
     }
@@ -82,7 +82,7 @@ class PostPanel extends Component {
         this.setState({
             inforProduction : {
                 ...this.state.inforProduction,
-                '4G' : e.target.value
+                _4G : e.target.value
             }
         })
     }
@@ -233,6 +233,7 @@ class PostPanel extends Component {
 
     handleUpload = (e) => {
         e.preventDefault();
+        let dataPath ;
         // call ajax
         let formData = new FormData();
         this.state.fileimages.map((item, index) => (
@@ -240,15 +241,16 @@ class PostPanel extends Component {
         ))
         
         const name = this.state.inforProduction.name;
-//tao forder save image
-        axios({
-            url: `${config.baseUrl}/createFolder?name=${name}`,
-            method: `post`, 
-          })
-            .then((response) => {
-              console.log(response.data);
-            })
-            .catch((error) => console.log(error));
+// //tao forder save image
+//         axios({
+//             url: `${config.baseUrl}/createFolder?name=${name}`,
+//             method: `post`, 
+//           })
+//             .then((response) => {
+//               console.log(response.data);
+//             })
+//             .catch((error) => console.log(error));
+
 //send image to folder in back-end
         axios({
         url: `${config.baseUrl}/upload-image`,
@@ -257,24 +259,31 @@ class PostPanel extends Component {
             'content-type': 'multipart/form-data'
         },
         data : formData
-    
-      })
+        })
         .then((response) => {
           console.log(response.data);
+          dataPath = response.data;
+          if(dataPath) {
+            axios({
+                url: `${config.baseUrl}/api/posts`,
+                method: `post`,
+                data :{
+                    data : this.state.inforProduction,
+                    path : dataPath
+                } 
+            
+              })
+                .then((response) => {
+                  console.log(response.data);
+                })
+                .catch((error) => console.log(error));
+          }
+          dataPath = '';
         })
         .catch((error) => console.log(error));
 
 //send data to mongo
-        axios({
-        url: `${config.baseUrl}/upload-data`,
-        method: `post`,
-        data : this.state.inforProduction
-    
-      })
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => console.log(error));
+       
 
 }
 
